@@ -12,6 +12,9 @@ group = "com.example"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
+val redissonVersion = "3.17.7"
+val testContainerVersion = "1.17.6"
+
 repositories {
     mavenCentral()
 }
@@ -22,9 +25,11 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.redisson:redisson-spring-boot-starter:3.17.7")
+    implementation("org.redisson:redisson-spring-boot-starter:${redissonVersion}")
     runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.testcontainers:testcontainers:${testContainerVersion}")
+
 }
 
 tasks.withType<KotlinCompile> {

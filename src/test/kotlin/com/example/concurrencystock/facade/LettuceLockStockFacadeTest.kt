@@ -7,18 +7,16 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.Executors
 
 /**
  * @author nespot2
  */
-@SpringBootTest
 internal class LettuceLockStockFacadeTest @Autowired constructor(
     private val lettuceLockStockFacade: LettuceLockStockFacade,
     private val stockRepository: StockRepository
-) {
+) : IntegrationTest() {
     @BeforeEach
     fun before() {
         val stock = Stock(
