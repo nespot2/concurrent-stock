@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: kotlin
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+  jpa:
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+        format_sql: true
+        hbm2ddl:
+          auto: create-drop
+    open-in-view: false
+  sql:
+    init:
+      encoding: UTF-8
+
+logging:
+  level:
+    com.example: debug
+    org.hibernate.dialect: off
+    org.hibernate.type.BasicTypeRegistry: off
+    org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
