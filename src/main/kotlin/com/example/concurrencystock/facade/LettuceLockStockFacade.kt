@@ -1,6 +1,6 @@
 package com.example.concurrencystock.facade
 
-import com.example.concurrencystock.repository.RedisLockRepository
+import com.example.concurrencystock.aop.LettuceLock
 import com.example.concurrencystock.service.StockService
 import org.springframework.stereotype.Service
 
@@ -9,17 +9,11 @@ import org.springframework.stereotype.Service
  **/
 @Service
 class LettuceLockStockFacade(
-    private val redisRepository: RedisLockRepository,
     private val stockService: StockService
 ) {
-    fun decrease(key: Long, quantity: Long) {
-        while (!redisRepository.lock(key = key)) {
-            Thread.sleep(50)
-        }
-        try {
-            stockService.decrease(productId = key, quantity = quantity)
-        } finally {
-            redisRepository.unlock(key = key)
-        }
+
+    @LettuceLock(key = "productId")
+    fun decrease(productId: Long, quantity: Long) {
+        stockService.decrease(productId = productId, quantity = quantity)
     }
 }

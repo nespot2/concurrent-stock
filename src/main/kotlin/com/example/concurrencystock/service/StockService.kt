@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional
 class StockService(
     private val stockRepository: StockRepository
 ) {
+
     @Transactional
     fun decrease(productId: Long, quantity: Long) {
         val stock =

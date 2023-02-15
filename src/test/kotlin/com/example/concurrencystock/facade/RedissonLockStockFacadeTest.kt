@@ -42,7 +42,7 @@ class RedissonLockStockFacadeTest @Autowired constructor(
 
         for (i in 1..100) {
             executorService.submit {
-                redissonLockStockFacade.decrease(key = 1, quantity = 1)
+                redissonLockStockFacade.decrease(productId = 1, quantity = 1)
                 latch.countDown()
             }
         }

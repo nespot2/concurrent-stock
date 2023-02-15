@@ -40,7 +40,7 @@ internal class LettuceLockStockFacadeTest @Autowired constructor(
 
         for (i in 1..100) {
             executorService.submit {
-                lettuceLockStockFacade.decrease(key = 1, quantity = 1)
+                lettuceLockStockFacade.decrease(productId = 1, quantity = 1)
                 latch.countDown()
             }
         }
